@@ -1,3 +1,5 @@
+"use client";
+
 import { useState } from "react";
 import Container from "./components/Container";
 import Li from "./components/Li";
@@ -9,7 +11,7 @@ import Label from "./components/Label";
 import InputWrapper from "./components/InputWrapper";
 import H3 from "./components/H3";
 
-export default function App(): React.ReactElement {
+export default function Home(): React.ReactElement {
   const [selectedBank, setSelectedBank] = useState({
     bb: false,
     bradesco: false,
@@ -87,6 +89,7 @@ export default function App(): React.ReactElement {
         <ul className="flex flex-wrap gap-2 mx-auto">
           {banks.map((bank) => (
             <Li
+              key={bank.bankName}
               selected={bank.selected}
               bankName={bank.bankName}
               handleToggleSelected={() => toggleSelectedBank(bank.bankName)}
