@@ -6,7 +6,7 @@ interface IForm {
 export default function Form({ children, handleSubmit }: IForm) {
   return (
     <form
-      className="flex flex-col gap-5 min-w-[320px] max-w-[400px] w-full"
+      className="flex flex-col gap-4 min-w-[318px] max-w-[430px] w-full"
       onSubmit={(event: React.FormEvent) => handleSubmit(event)}
     >
       {children}

@@ -15,7 +15,7 @@ export default function Li({
     <li
       className={`p-2 bg-blue-500 text-white text-center rounded-md ${
         selected && "bg-blue-700"
-      } min-w-[320px] max-w-[400px] w-full`}
+      } min-w-[320px] max-w-[430px] w-full`}
       onClick={() => handleToggleSelected(bankName)}
     >
       <span className="pointer-events-none">{children}</span>

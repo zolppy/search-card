@@ -84,9 +84,9 @@ export default function Home(): React.ReactElement {
           internet
         </h2>
       </hgroup>
-      <div className="flex flex-col gap-2">
+      <div className="flex flex-col gap-4">
         <H3>Tipo de cartão:</H3>
-        <ul className="flex flex-wrap gap-2 mx-auto">
+        <ul className="flex flex-wrap gap-2">
           {banks.map((bank) => (
             <Li
               key={bank.bankName}
@@ -99,7 +99,7 @@ export default function Home(): React.ReactElement {
           ))}
         </ul>
       </div>
-      <div className="flex flex-wrap justify-between gap-5">
+      <div className="flex flex-wrap justify-between gap-4">
         <Form handleSubmit={handleSubmit}>
           <H3>Dados do cartão</H3>
           <div className="flex flex-col gap-2">
