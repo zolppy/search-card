@@ -84,6 +84,10 @@ export default function Home(): React.ReactElement {
           internet
         </h2>
       </hgroup>
+      <p className="font-bold text-red-500">
+        Aplicação desenvolvida apenas com propósito de ludicidade. Não é
+        necessário colocar seus dados, se for o caso, o formulário nem funciona.
+      </p>
       <div className="flex flex-col gap-4">
         <H3>Tipo de cartão:</H3>
         <ul className="flex flex-wrap gap-2">
