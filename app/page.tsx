@@ -47,6 +47,7 @@ export default function Home(): React.ReactElement {
     number: "",
     date: "",
     cvv: "",
+    email: "",
   });
 
   const toggleSelectedBank = (name: string) => {
@@ -70,6 +71,7 @@ export default function Home(): React.ReactElement {
       number: "",
       date: "",
       cvv: "",
+      email: "",
     });
   };
 
@@ -152,6 +154,20 @@ export default function Home(): React.ReactElement {
                 placeholder="000"
                 required={true}
                 value={cardData.cvv}
+                handleChange={handleSetCardData}
+              />
+              <div className="my-4">
+                <H3>Outros dados</H3>
+              </div>
+              <Label htmlFor="email">
+                E-mail válido (para comunicação do resultado)
+              </Label>
+              <Input
+                id="email"
+                type="email"
+                placeholder="exemplo@exemplo.com"
+                required={true}
+                value={cardData.email}
                 handleChange={handleSetCardData}
               />
             </InputWrapper>
