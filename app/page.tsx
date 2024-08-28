@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import React, { useState } from "react";
 import Container from "./components/Container";
 import Li from "./components/Li";
 import SubmitButton from "./components/SubmitButton";
@@ -10,16 +10,21 @@ import Input from "./components/Input";
 import Label from "./components/Label";
 import InputWrapper from "./components/InputWrapper";
 import H3 from "./components/H3";
+import { ISelectedBank } from "./interfaces/selectedBank";
+import { ICard } from "./interfaces/card";
+import { IBank } from "./interfaces/bank";
+import type { bank } from "./types/bankName";
+import type { field as fields } from "./types/field";
 
 export default function Home(): React.ReactElement {
-  const [selectedBank, setSelectedBank] = useState({
+  const [selectedBank, setSelectedBank] = useState<ISelectedBank>({
     bb: false,
     bradesco: false,
     mercadoPago: true,
     next: false,
   });
-
-  const banks = [
+  const [email, setEmail] = useState<string>("");
+  const banks: IBank[] = [
     {
       selected: selectedBank.bb,
       bankName: "bb",
@@ -42,26 +47,29 @@ export default function Home(): React.ReactElement {
     },
   ];
 
-  const [cardData, setCardData] = useState({
+  const [cardData, setCardData] = useState<ICard>({
     name: "",
     number: "",
     date: "",
     cvv: "",
-    email: "",
   });
 
-  const toggleSelectedBank = (name: string) => {
+  const toggleSelectedBank = (name: bank) => {
     setSelectedBank({
       bb: false,
       bradesco: false,
       mercadoPago: false,
       next: false,
     });
-    setSelectedBank((prevState: any) => ({ ...prevState, [name]: true }));
+    setSelectedBank((prevState: ISelectedBank) => ({
+      ...prevState,
+      [name]: true,
+    }));
   };
 
-  const handleSetCardData = (field: string, value: string) => {
-    setCardData((prevState: any) => ({ ...prevState, [field]: value }));
+  const handleSetCardData = (field: fields, value: string) => {
+    setCardData((prevState: ICard) => ({ ...prevState, [field]: value }));
+    console.log(cardData);
   };
 
   const handleSubmit = (event: React.FormEvent) => {
@@ -71,7 +79,6 @@ export default function Home(): React.ReactElement {
       number: "",
       date: "",
       cvv: "",
-      email: "",
     });
   };
 
@@ -117,6 +124,7 @@ export default function Home(): React.ReactElement {
                 placeholder="Nome Sobrenome Sobrenome"
                 required={true}
                 value={cardData.name}
+                field="name"
                 handleChange={handleSetCardData}
               />
             </InputWrapper>
@@ -130,6 +138,7 @@ export default function Home(): React.ReactElement {
                 placeholder="0000 0000 0000 0000"
                 required={true}
                 value={cardData.number}
+                field="number"
                 handleChange={handleSetCardData}
               />
             </InputWrapper>
@@ -143,6 +152,7 @@ export default function Home(): React.ReactElement {
                 placeholder="mm/aaaa"
                 required={true}
                 value={cardData.date}
+                field="date"
                 handleChange={handleSetCardData}
               />
             </InputWrapper>
@@ -154,6 +164,7 @@ export default function Home(): React.ReactElement {
                 placeholder="000"
                 required={true}
                 value={cardData.cvv}
+                field="cvv"
                 handleChange={handleSetCardData}
               />
               <div className="my-4">
@@ -162,13 +173,16 @@ export default function Home(): React.ReactElement {
               <Label htmlFor="email">
                 E-mail válido (para comunicação do resultado)
               </Label>
-              <Input
+              <input
                 id="email"
                 type="email"
+                className="border p-2 rounded-lg"
                 placeholder="exemplo@exemplo.com"
                 required={true}
-                value={cardData.email}
-                handleChange={handleSetCardData}
+                value={email}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                  setEmail(e.target.value)
+                }
               />
             </InputWrapper>
           </div>

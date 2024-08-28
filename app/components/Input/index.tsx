@@ -1,10 +1,13 @@
+import type { field as fields } from "@/app/types/field";
+
 interface IInput {
   id: string;
   type: string;
   placeholder: string;
   required: boolean;
   value: string;
-  handleChange: (name: string, value: string) => void;
+  field: fields;
+  handleChange: (field: fields, value: string) => void;
 }
 
 export default function Input({
@@ -13,6 +16,7 @@ export default function Input({
   placeholder,
   required,
   value,
+  field,
   handleChange,
 }: IInput) {
   return (
@@ -24,7 +28,7 @@ export default function Input({
       required={required}
       value={value}
       onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
-        handleChange(id, event.target.value)
+        handleChange(field, event.target.value)
       }
     />
   );

@@ -1,11 +1,5 @@
 import H3 from "../H3";
-
-interface ICard {
-  name: string;
-  number: string;
-  date: string;
-  cvv: string;
-}
+import { ICard } from "@/app/interfaces/card";
 
 export default function Card({ name, number, date, cvv }: ICard) {
   return (
